@@ -6,15 +6,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 public class InfoActivity extends AppCompatActivity {
+    TextView textViewPhone;
+    TextView storeAdress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        textViewPhone = (TextView) findViewById(R.id.text_view_phone);
+        storeAdress = (TextView) findViewById(R.id.text_view_address);
 
         Uri uri = Uri.parse("android.resource://com.codeschool.candycoded/" + R.drawable.store_front);
         ImageView candyStoreImageView = (ImageView)findViewById(R.id.image_view_candy_store);
@@ -35,11 +40,15 @@ public class InfoActivity extends AppCompatActivity {
         if(mapIntent.resolveActivity(getPackageManager()) != null){
             startActivity(mapIntent);
         }
-
-
     }
 
     // ***
     // TODO - Task 3 - Launch the Phone Activity
     // ***
+    public void createPhoneIntenet(View view) {
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:(012)345-6789"));
+        startActivity(dialIntent);
+
+    }
 }
